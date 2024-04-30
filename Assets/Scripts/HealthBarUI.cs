@@ -8,7 +8,7 @@ public class HealthBarUI : MonoBehaviour
     [SerializeField] float health = 100f;
     [SerializeField] float maxHealth = 100f;
 
-    private Image HealthBar;
+    public Image HealthBar;
     // Start is called before the first frame update
     void Start()
     {

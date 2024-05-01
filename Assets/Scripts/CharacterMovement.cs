@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private float originalSpeed; // Orijinal hızı saklamak için
     private bool canBoost = true; // Boost'un kullanılabilir olup olmadığını kontrol etmek için
+    public Score score;
 
     void Start()
     {
@@ -65,5 +67,16 @@ public class PlayerMovement : MonoBehaviour
         animator.speed = 1f; // Animasyon hızını sıfırla
         yield return new WaitForSeconds(boostCooldown);
         canBoost = true; // Boost'u tekrar kullanılabilir hale getir
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+            score.IncreaseScore();
+
+        }
+
     }
 }

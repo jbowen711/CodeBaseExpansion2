@@ -5,21 +5,27 @@ using UnityEngine.UI;
 
 public class HealthBarUI : MonoBehaviour
 {
-    [SerializeField] float health = 100f;
-    [SerializeField] float maxHealth = 100f;
 
-    public Image HealthBar;
+
+    public Image healthBar;
     // Start is called before the first frame update
     void Start()
     {
-        HealthBar = GetComponent<Image>();
+        healthBar = GetComponent<Image>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        HealthBar.fillAmount = health / maxHealth;
+  
 
         
+    }
+
+    public void UpdateHealthBar(float currentHealth, float maxHealth)
+    {
+        float fillAmount = currentHealth / maxHealth;
+        healthBar.fillAmount = fillAmount;
     }
 }

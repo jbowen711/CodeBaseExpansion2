@@ -4,12 +4,16 @@ public class EnemyAI : MonoBehaviour
 {
     public float speed = 5f;
     public float attackRange = 5f;
-    public int damage = 10;
+    public int damage = 2;
     private Vector2 targetPosition;
     private Vector2 spawnPosition;
     private Animator animator;
     private GameObject player;
     private float minMoveDistance = 0.5f;
+    private GameObject castle;
+    private CastleHealth castleHealth;
+    
+    
 
     void Start()
     {
@@ -17,14 +21,21 @@ public class EnemyAI : MonoBehaviour
         targetPosition = GetRandomPositionAroundSpawn();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
+        castle = GameObject.FindGameObjectWithTag("Castle");
+        castleHealth = castle.GetComponent<CastleHealth>();
     }
 
     void Update()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
+        float distanceToCastle = Vector2.Distance(transform.position, castle.transform.position);
         if (distanceToPlayer < attackRange)
         {
             AttackPlayer();
+        }
+        else if (distanceToCastle > attackRange)
+        {
+            MoveToCastle();
         }
         else
         {
@@ -62,6 +73,23 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    void MoveToCastle()
+    {
+        Vector2 castleLocation = castle.transform.position - transform.position;
+        transform.Translate(castleLocation.normalized * speed * Time.deltaTime);
+        animator.SetBool("isRunning", true);
+
+        if (castleLocation.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (castleLocation.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+
+    }
+
     void AttackPlayer()
     {
         animator.SetBool("isRunning", false);
@@ -74,5 +102,15 @@ public class EnemyAI : MonoBehaviour
         {
             targetPosition = GetRandomPositionAroundSpawn();
         }
+        else if (collision.gameObject.tag == "Castle")
+        {
+             if (castle != null)
+             {
+                castleHealth.TakeDamage(damage);
+ 
+             }
+             Destroy(gameObject);
+        }
+        
     }
 }

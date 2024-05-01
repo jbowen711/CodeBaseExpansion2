@@ -9,6 +9,9 @@ public class ChickenController : MonoBehaviour
     // Hareket hızı
     public float speed = 5f;
 
+    //Push the enemy back
+    float henPush = 4f;
+
     // Diğer tavuk karakterlerine referans
     public GameObject[] otherChickens;
     // Minimum mesafe
@@ -88,6 +91,10 @@ public class ChickenController : MonoBehaviour
             {
                 // Saldırı animasyonunu başlat
                 animator.SetBool("Attack", true);
+                Rigidbody2D enemyRb = collider.gameObject.GetComponent<Rigidbody2D>();
+                Vector2 backwards = (collider.transform.position - transform.position).normalized; 
+                enemyRb.AddForce(backwards * henPush, ForceMode2D.Impulse);
+                enemyRb.drag = 2f;
             }
             else
             {

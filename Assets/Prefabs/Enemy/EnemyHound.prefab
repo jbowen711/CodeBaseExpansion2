@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1721529366539278039}
   - component: {fileID: 1583238444457759617}
   - component: {fileID: 2537798636664710260}
-  - component: {fileID: 6494842326817700337}
   m_Layer: 0
   m_Name: EnemyHound
   m_TagString: Enemy
@@ -123,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d217d5498415b6148987e468f89bebf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2
   attackRange: 5
   damage: 10
 --- !u!50 &1721529366539278039
@@ -223,16 +222,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.74
---- !u!114 &6494842326817700337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4295437327702709113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 877f6c3bb105dec4692e40f04d8e1c73, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5274019894082967091}
   - component: {fileID: 8208484411811980060}
   - component: {fileID: 5132941198514934025}
-  - component: {fileID: 3752444205452800770}
   - component: {fileID: 4082562231884044733}
+  - component: {fileID: 4252350483649738343}
   m_Layer: 0
   m_Name: EnemyBandit
   m_TagString: Enemy
@@ -169,10 +169,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07074618, y: -0.17686555}
-  m_Size: {x: 2.0595326, y: 2.352624}
+  m_Offset: {x: -0.15756202, y: -0.17686558}
+  m_Size: {x: 1.8164487, y: 2.352624}
   m_Direction: 0
---- !u!58 &3752444205452800770
+--- !u!114 &4082562231884044733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3965197279460507274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d217d5498415b6148987e468f89bebf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  attackRange: 5
+  damage: 10
+--- !u!58 &4252350483649738343
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,24 +216,9 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.17363143, y: -0.17363155}
   serializedVersion: 2
-  m_Radius: 2
---- !u!114 &4082562231884044733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3965197279460507274}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d217d5498415b6148987e468f89bebf7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  attackRange: 5
-  damage: 10
+  m_Radius: 1.3980772

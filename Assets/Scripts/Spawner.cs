@@ -13,16 +13,60 @@ public class RandomSpawner : MonoBehaviour
     public string avoidTag = "Avoid"; // Kaçınılacak objenin tag'ı
     public float avoidRadius = 5f; // Kaçınılacak objenin etrafındaki yarıçap
 
+    public bool coolDown = false;
+    private float spawnCooldown = 5f;
+
     private List<Vector2> spawnedPositions = new List<Vector2>(); // Spawn edilen objelerin konumlarını saklayan liste
 
     void Start()
     {
-        for (int i = 0; i < spawnCount; i++)
+        if (coolDown == false)
         {
-            SpawnPrefab();
+            for (int i = 0; i < spawnCount; i++)
+            {
+                SpawnPrefab();
+                
+            }
+        }
+        if (coolDown == true) 
+        {
+            StartCoroutine(SpawnPrefabWithCooldown());
         }
     }
 
+
+    void Update () { 
+
+        
+    }
+    IEnumerator SpawnPrefabWithCooldown()
+    {
+
+        while (true)
+        {
+            Vector2 spawnPos;
+
+            do
+            {
+                // Rastgele bir konum belirle
+                float spawnPosX = Random.Range(transform.position.x - spawnAreaWidth / 2, transform.position.x + spawnAreaWidth / 2);
+                float spawnPosY = Random.Range(transform.position.y - spawnAreaHeight / 2, transform.position.y + spawnAreaHeight / 2);
+                spawnPos = new Vector2(spawnPosX, spawnPosY);
+            }
+            while (IsInBufferZone(spawnPos) || IsInAvoidZone(spawnPos)); // Spawn olacak konumun belirlenen bölge dışında olduğunu kontrol et
+
+            // Rastgele bir prefab seç
+            GameObject prefab = prefabPool[Random.Range(0, prefabPool.Length)];
+
+            // Prefab objesini belirlenen konumda oluştur
+            Instantiate(prefab, spawnPos, Quaternion.identity);
+
+            // Spawn edilen objenin konumunu listeye ekle
+            spawnedPositions.Add(spawnPos);
+            yield return new WaitForSeconds(spawnCooldown);
+        }    
+        
+    }
     void SpawnPrefab()
     {
         Vector2 spawnPos;
